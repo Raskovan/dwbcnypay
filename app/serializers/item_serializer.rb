@@ -1,4 +1,4 @@
 class ItemSerializer < ActiveModel::Serializer
-  attributes :title, :price
+  attributes :id, :title, :price
   belongs_to :category
 end

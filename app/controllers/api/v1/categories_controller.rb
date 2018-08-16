@@ -1,29 +1,28 @@
 class Api::V1::CategoriesController < ApplicationController
-before_action :find_category, only: [:update]
+  before_action :find_category, only: [:update]
 
-def index
-  @categories = Category.all
-  render json: @categories
-end
+  def index
+    @categories = Category.all
+    render json: @categories
+  end
 
-def update
-  @category.update(category_params)
-  if @category.save
-    render json: @category, status: :accepted
-    else
-      render json: {errors: @category.errors.full_messages}, status: :unprocessible_entity
-    end
-end
+  def update
+    @category.update(category_params)
+    if @category.save
+      render json: @category, status: :accepted
+      else
+        render json: {errors: @category.errors.full_messages}, status: :unprocessible_entity
+      end
+  end
 
   private
 
   def category_params
-    params.permit(:title, :category_price, :items)
+    params.permit(:title, :category_price)
   end
 
   def find_category
     @category = Category.find(params[:id])
   end
-
 
 end
